@@ -13,7 +13,7 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Välkommen till Adressboken!");
+            Console.WriteLine("Välkommen till Adressajten!");
             Console.WriteLine("1. Lägg till kontakt");
             Console.WriteLine("2. Visa alla kontakter");
             Console.WriteLine("3. Visa detaljer om kontakt");
@@ -41,7 +41,7 @@ class Program
                     SaveContacts();
                     return;
                 default:
-                    Console.WriteLine("Ogiltigt val. Försök igen.");
+                    Console.WriteLine("Det blev ett ogiltigt val. Vänligen försök igen.");
                     break;
             }
 
@@ -66,38 +66,44 @@ class Program
 
     static void AddContact()
     {
-        Console.Write("Ange förnamn: ");
-        string firstName = Console.ReadLine();
+        Console.Write("Ange namnet på kontakten: ");
+        string fullName = Console.ReadLine();
 
-        Console.Write("Ange efternamn: ");
-        string lastName = Console.ReadLine();
-
-        Console.Write("Ange telefonnummer: ");
+        Console.Write("Ange Telefonnummer: ");
         string phoneNumber = Console.ReadLine();
 
-        Console.Write("Ange e-postadress: ");
+        Console.Write("Ange E-postadress: ");
         string email = Console.ReadLine();
 
-        Console.Write("Ange adressinformation: ");
+        Console.Write("Ange Adress: ");
         string address = Console.ReadLine();
+
+        Console.Write("Ange Stad: ");
+        string city = Console.ReadLine();
+
+        Console.Write("Ange Personnummer: ");
+        string personalNumber = Console.ReadLine();
 
         Contact newContact = new Contact
         {
-            FirstName = firstName,
-            LastName = lastName,
+            FirstName = fullName.Split(' ').First(), // Anta att det första ordet är förnamnet
+            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), // Anta att resten av orden är efternamnet
             PhoneNumber = phoneNumber,
             Email = email,
-            Address = address
+            Address = address,
+            City = city,
+            PersonalNumber = personalNumber
         };
 
         contacts.Add(newContact);
 
-        Console.WriteLine("Kontakt har lagts till!");
+        Console.WriteLine("Din kontakt har lagts till!");
+
     }
 
     static void ShowAllContacts()
     {
-        Console.WriteLine("Alla kontakter:");
+        Console.WriteLine("Alla kontakter på adressajten nedan:");
         foreach (var contact in contacts)
         {
             Console.WriteLine($"{contact.FirstName} {contact.LastName}");
@@ -106,19 +112,30 @@ class Program
 
     static void ShowContactDetails()
     {
-        Console.Write("Ange index för kontakten du vill se detaljer om: ");
-        if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < contacts.Count)
+        Console.Write("Ange namnet på kontakten du vill hantera: ");
+        string fullNameToFind = Console.ReadLine();
+
+        var matchingContacts = contacts
+            .Where(contact => (contact.FirstName + " " + contact.LastName).Equals(fullNameToFind, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if (matchingContacts.Count > 0)
         {
-            var contact = contacts[index];
-            Console.WriteLine($"Detaljer för {contact.FirstName} {contact.LastName}:");
-            Console.WriteLine($"Telefonnummer: {contact.PhoneNumber}");
-            Console.WriteLine($"E-postadress: {contact.Email}");
-            Console.WriteLine($"Adress: {contact.Address}");
+            foreach (var contact in matchingContacts)
+            {
+                Console.WriteLine($"Detaljer för {contact.FirstName} {contact.LastName}:");
+                Console.WriteLine($"Telefonnummer: {contact.PhoneNumber}");
+                Console.WriteLine($"E-postadress: {contact.Email}");
+                Console.WriteLine($"Adress: {contact.Address}");
+                Console.WriteLine($"Stad: {contact.City}");
+                Console.WriteLine($"Personnummer: {contact.PersonalNumber}");
+            }
         }
         else
         {
-            Console.WriteLine("Ogiltigt index. Försök igen.");
+            Console.WriteLine("Tyvärr hittades ingen kontakt med angivet namn...");
         }
+
     }
 
     static void RemoveContact()
@@ -131,11 +148,11 @@ class Program
         if (contactToRemove != null)
         {
             contacts.Remove(contactToRemove);
-            Console.WriteLine("Kontakt har tagits bort!");
+            Console.WriteLine("Din kontakt har tagits bort!");
         }
         else
         {
-            Console.WriteLine("Kontakt med angiven e-postadress hittades inte.");
+            Console.WriteLine("Tyvärr hittades inte kontakten med angiven e-postadress...");
         }
     }
 }
@@ -147,4 +164,6 @@ class Contact
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
     public string Address { get; set; }
+    public string City { get; set; } 
+    public string PersonalNumber { get; set; }
 }

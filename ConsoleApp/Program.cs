@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
+/// <summaries>
+/// Main class that contains the console
+/// </summaries>
+
 class Program
 {
+    // List of all the contacts
     static List<Contact> contacts = new List<Contact>();
+
+    //File path to save contacts as JSON
     static string filePath = "contacts.json";
 
+    /// <summaries>
+    /// Main method that is running when the program is starting
+    /// </summaries>
     static void Main()
     {
         LoadContacts();

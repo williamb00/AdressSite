@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-/// <summaries>
-/// Main class that contains the console
-/// </summaries>
-
+/// <summary-comments>
+/// Main class that contains the console.
+/// </summary-comments>
 class Program
 {
-    // List of all the contacts
+    // List of all the contacts.
     static List<Contact> contacts = new List<Contact>();
 
-    //File path to save contacts as JSON
+    //File path to save contacts as JSON.
     static string filePath = "contacts.json";
 
-    /// <summaries>
-    /// Main method that is running when the program is starting
-    /// </summaries>
+    /// <summary-comments>
+    /// Main method that runs when the program starts.
+    /// </summary-comments>
     static void Main()
     {
+        // Load existing contacts at startup.
         LoadContacts();
 
+        // Main menu in an infinite loop.
         while (true)
         {
             Console.WriteLine("Välkommen till Adressajten!");
@@ -33,6 +34,7 @@ class Program
             Console.Write("Vänligen välj en åtgärd (1-5): ");
             string choice = Console.ReadLine();
 
+            // Manage user selection.
             switch (choice)
             {
                 case "1":
@@ -59,6 +61,9 @@ class Program
         }
     }
 
+    /// <summary-comments>
+    /// Loads existing contacts from the JSON file at startup.
+    /// </summary-comments>
     static void LoadContacts()
     {
         if (System.IO.File.Exists(filePath))
@@ -68,12 +73,18 @@ class Program
         }
     }
 
+    /// <summary-comments>
+    /// Saves all contacts to the JSON file.
+    /// </summary-comments>
     static void SaveContacts()
     {
         string json = JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented);
         System.IO.File.WriteAllText(filePath, json);
     }
 
+    /// <summary-comments>
+    /// Adding a new contact based on user input.
+    /// </summary-comments>
     static void AddContact()
     {
         Console.Write("Ange namnet på kontakten: ");
@@ -111,6 +122,9 @@ class Program
 
     }
 
+    /// <summary-comments>
+    /// Displays all contacts in a fine way.
+    /// </summary-comments>
     static void ShowAllContacts()
     {
         Console.WriteLine("Alla kontakter på adressajten nedan:");
@@ -120,6 +134,9 @@ class Program
         }
     }
 
+    /// <summary-comments>
+    /// Displays detailed information about a specific contact based on user input.
+    /// </summary-comments>
     static void ShowContactDetails()
     {
         Console.Write("Ange namnet på kontakten du vill hantera: ");
@@ -148,6 +165,9 @@ class Program
 
     }
 
+    /// <summary-comments>
+    /// Deletes a contact based on user input.
+    /// </summary-comments>
     static void RemoveContact()
     {
         Console.Write("Ange e-postadress för kontakten du vill ta bort: ");
@@ -167,6 +187,9 @@ class Program
     }
 }
 
+/// <summary-comments>
+/// Represents a contact with basic information.
+/// </summary-comments>
 class Contact
 {
     public string FirstName { get; set; }

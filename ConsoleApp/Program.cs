@@ -112,8 +112,8 @@ public class Program
 
         Contact newContact = new Contact
         {
-            FirstName = fullName.Split(' ').First(), // Anta att det första ordet är förnamnet
-            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), // Anta att resten av orden är efternamnet
+            FirstName = fullName.Split(' ').First(), 
+            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), 
             PhoneNumber = phoneNumber,
             Email = email,
             Address = address,
@@ -202,7 +202,7 @@ public class Program
 /// </summary-comments>
 public class Contact
 {
-    public Contact() // Lägg till denna konstruktor
+    public Contact() 
     {
     }
 

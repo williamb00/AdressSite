@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 /// <summary-comments>
 /// Main class that contains the console.
 /// </summary-comments>
-class Program
+public class Program
 {
     // List of all the contacts.
-    static List<Contact> contacts = new List<Contact>();
+    public static List<Contact> contacts = new List<Contact>();
 
     //File path to save contacts as JSON.
     static string filePath = "contacts.json";
@@ -61,10 +61,15 @@ class Program
         }
     }
 
+    private static void AddContact()
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary-comments>
     /// Loads existing contacts from the JSON file at startup.
     /// </summary-comments>
-    static void LoadContacts()
+    public static void LoadContacts()
     {
         if (System.IO.File.Exists(filePath))
         {
@@ -85,7 +90,7 @@ class Program
     /// <summary-comments>
     /// Adding a new contact based on user input.
     /// </summary-comments>
-    static void AddContact()
+    public static void AddContact(string v)
     {
         Console.Write("Ange namnet på kontakten: ");
         string fullName = Console.ReadLine();
@@ -185,18 +190,27 @@ class Program
             Console.WriteLine("Tyvärr hittades inte kontakten med angiven e-postadress...");
         }
     }
+
+    public void AddContact(string v1, string v2, string v3, string v4, string v5, string v6)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 /// <summary-comments>
 /// Represents a contact with basic information.
 /// </summary-comments>
-class Contact
+public class Contact
 {
+    public Contact() // Lägg till denna konstruktor
+    {
+    }
+
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
     public string Address { get; set; }
-    public string City { get; set; } 
+    public string City { get; set; }
     public string PersonalNumber { get; set; }
 }

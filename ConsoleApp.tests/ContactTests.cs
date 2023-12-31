@@ -15,7 +15,7 @@ namespace ConsoleApp.Tests
             Program.contacts.Clear();
 
             // Act
-            programInstance.AddContact("John Doe", "123456789", "john@example.com", "123 Main St", "City", "123456789");
+            programInstance.AddContact("William Björklund", "telefon", "william@gmail.com", "Bokvägen 5", "Stad", "Person nummmer");
 
             // Assert
             Assert.Single(Program.contacts);

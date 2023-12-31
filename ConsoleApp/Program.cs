@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 /// <summary-comments>
 /// Main class that contains the console.
 /// </summary-comments>
-public class Program
+class Program
 {
     // List of all the contacts.
-    public static List<Contact> contacts = new List<Contact>();
+    static List<Contact> contacts = new List<Contact>();
 
     //File path to save contacts as JSON.
     static string filePath = "contacts.json";
@@ -61,15 +61,10 @@ public class Program
         }
     }
 
-    private static void AddContact()
-    {
-        throw new NotImplementedException();
-    }
-
     /// <summary-comments>
     /// Loads existing contacts from the JSON file at startup.
     /// </summary-comments>
-    public static void LoadContacts()
+    static void LoadContacts()
     {
         if (System.IO.File.Exists(filePath))
         {
@@ -90,7 +85,7 @@ public class Program
     /// <summary-comments>
     /// Adding a new contact based on user input.
     /// </summary-comments>
-    public static void AddContact(string v)
+    static void AddContact()
     {
         Console.Write("Ange namnet på kontakten: ");
         string fullName = Console.ReadLine();
@@ -112,8 +107,8 @@ public class Program
 
         Contact newContact = new Contact
         {
-            FirstName = fullName.Split(' ').First(), 
-            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), 
+            FirstName = fullName.Split(' ').First(), // Anta att det första ordet är förnamnet
+            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), // Anta att resten av orden är efternamnet
             PhoneNumber = phoneNumber,
             Email = email,
             Address = address,
@@ -190,22 +185,13 @@ public class Program
             Console.WriteLine("Tyvärr hittades inte kontakten med angiven e-postadress...");
         }
     }
-
-    public void AddContact(string v1, string v2, string v3, string v4, string v5, string v6)
-    {
-        throw new NotImplementedException();
-    }
 }
 
 /// <summary-comments>
 /// Represents a contact with basic information.
 /// </summary-comments>
-public class Contact
+class Contact
 {
-    public Contact() 
-    {
-    }
-
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string PhoneNumber { get; set; }

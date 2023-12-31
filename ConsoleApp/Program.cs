@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-/// <summary-comments>
+/// <summary>
 /// Main class that contains the console.
-/// </summary-comments>
+/// </summary>
 class Program
 {
     // List of all the contacts.
@@ -13,9 +13,9 @@ class Program
     //File path to save contacts as JSON.
     static string filePath = "contacts.json";
 
-    /// <summary-comments>
+    /// <summary>
     /// Main method that runs when the program starts.
-    /// </summary-comments>
+    /// </summary>
     static void Main()
     {
         // Load existing contacts at startup.
@@ -61,9 +61,9 @@ class Program
         }
     }
 
-    /// <summary-comments>
+    /// <summary>
     /// Loads existing contacts from the JSON file at startup.
-    /// </summary-comments>
+    /// </summary>
     static void LoadContacts()
     {
         if (System.IO.File.Exists(filePath))
@@ -73,18 +73,18 @@ class Program
         }
     }
 
-    /// <summary-comments>
+    /// <summary>
     /// Saves all contacts to the JSON file.
-    /// </summary-comments>
+    /// </summary>
     static void SaveContacts()
     {
         string json = JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented);
         System.IO.File.WriteAllText(filePath, json);
     }
 
-    /// <summary-comments>
+    /// <summary>
     /// Adding a new contact based on user input.
-    /// </summary-comments>
+    /// </summary>
     static void AddContact()
     {
         Console.Write("Ange namnet på kontakten: ");
@@ -107,8 +107,8 @@ class Program
 
         Contact newContact = new Contact
         {
-            FirstName = fullName.Split(' ').First(), // Anta att det första ordet är förnamnet
-            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), // Anta att resten av orden är efternamnet
+            FirstName = fullName.Split(' ').First(), 
+            LastName = fullName.Split(' ').Skip(1).FirstOrDefault(), 
             PhoneNumber = phoneNumber,
             Email = email,
             Address = address,
@@ -122,9 +122,9 @@ class Program
 
     }
 
-    /// <summary-comments>
+    /// <summary>
     /// Displays all contacts in a fine way.
-    /// </summary-comments>
+    /// </summary>
     static void ShowAllContacts()
     {
         Console.WriteLine("Alla kontakter på adressajten nedan:");
@@ -134,9 +134,9 @@ class Program
         }
     }
 
-    /// <summary-comments>
+    /// <summary>
     /// Displays detailed information about a specific contact based on user input.
-    /// </summary-comments>
+    /// </summary>
     static void ShowContactDetails()
     {
         Console.Write("Ange namnet på kontakten du vill hantera: ");
@@ -165,9 +165,9 @@ class Program
 
     }
 
-    /// <summary-comments>
+    /// <summary>
     /// Deletes a contact based on user input.
-    /// </summary-comments>
+    /// </summary>
     static void RemoveContact()
     {
         Console.Write("Ange e-postadress för kontakten du vill ta bort: ");
@@ -187,9 +187,9 @@ class Program
     }
 }
 
-/// <summary-comments>
+/// <summary>
 /// Represents a contact with basic information.
-/// </summary-comments>
+/// </summary>
 class Contact
 {
     public string FirstName { get; set; }
